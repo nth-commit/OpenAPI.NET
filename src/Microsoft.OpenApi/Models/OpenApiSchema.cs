@@ -590,20 +590,20 @@ namespace Microsoft.OpenApi.Models
             writer.WriteProperty(OpenApiConstants.Type, Type);
 
             // items
-            writer.WriteOptionalObject(OpenApiConstants.Items, Items, (w, s) => s.SerializeAsV2(w));
+            writer.WriteOptionalObject(OpenApiConstants.Items, Items, (w, s) => s.SerializeAsV2WithoutReference(w));
 
             // allOf
-            writer.WriteOptionalCollection(OpenApiConstants.AllOf, AllOf, (w, s) => s.SerializeAsV2(w));
+            writer.WriteOptionalCollection(OpenApiConstants.AllOf, AllOf, (w, s) => s.SerializeAsV2WithoutReference(w));
 
             // properties
             writer.WriteOptionalMap(OpenApiConstants.Properties, Properties, (w, key, s) =>
-                s.SerializeAsV2(w, Required, key));
+                s.SerializeAsV2WithoutReference(w, Required, key));
 
             // additionalProperties
             writer.WriteOptionalObject(
                 OpenApiConstants.AdditionalProperties,
                 AdditionalProperties,
-                (w, s) => s.SerializeAsV2(w));
+                (w, s) => s.SerializeAsV2WithoutReference(w));
 
             // discriminator
             writer.WriteProperty(OpenApiConstants.Discriminator, Discriminator?.PropertyName);
